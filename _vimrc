@@ -377,6 +377,9 @@ inoremap <expr> " CheckNextQuote(dquote)
 let bticks = '`'
 inoremap <expr> ` CheckNextQuote(bticks)
 
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 function CheckNextQuote(c)
   let after = col('.')
   let afterChar = matchstr(getline('.'), '\%' . after . 'c.')
